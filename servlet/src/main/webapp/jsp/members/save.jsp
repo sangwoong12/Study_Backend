@@ -1,0 +1,28 @@
+<%@ page import="hello.servlet.domain.member.Member" %>
+<%@ page import="hello.servlet.domain.member.MemberRepository" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    //request, response 는 자동으로가능 jsp는 서블릿으로 자동으로 바뀌기 때문에 가능 씹가능
+    MemberRepository memberRepository = MemberRepository.getInstance();
+    System.out.println("save.jsp");
+    String username = request.getParameter("username");
+    int age = Integer.parseInt(request.getParameter("age"));
+    Member member = new Member(username, age);
+    System.out.println("member = " + member);
+    memberRepository.save(member);
+%>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+성공
+<ul>
+    <li>id=<%=member.getId()%></li>
+    <li>username=<%=member.getUsername()%></li>
+    <li>age=<%=member.getAge()%></li>
+
+</ul>
+<a href="/index.html">메인</a>
+</body>
+</html>
